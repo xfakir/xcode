@@ -15,6 +15,7 @@
     <modules>
         <module>leetcode</module>
         <module>netty</module>
+        <module>hadoop</module>
     </modules>
     <packaging>pom</packaging>
 
