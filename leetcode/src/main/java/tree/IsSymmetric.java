@@ -1,7 +1,6 @@
 package tree;
 
 import java.util.LinkedList;
-import java.util.Queue;
 
 public class IsSymmetric {
     public boolean isSymmetric_recursion(TreeNode root) {
