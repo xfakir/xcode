@@ -14,9 +14,22 @@ public class BasicBinarySearch {
         return -1;
     }
 
+    public int solution_iteration(int[] nums,int target) {
+        int mid;
+        int left = 0;
+        int right = nums.length-1;
+        while (left <= right) {
+            mid = (right-left)/2 + left;
+            if (target == nums[mid]) return mid;
+            else if(target > nums[mid]) left = mid+1;
+            else right = mid-1;
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
         BasicBinarySearch b = new BasicBinarySearch();
         int[] nums = {1,3,5,6,7,9};
-        System.out.println(b.solution(nums,3));
+        System.out.println(b.solution_iteration(nums,3));
     }
 }
