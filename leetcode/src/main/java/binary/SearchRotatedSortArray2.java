@@ -54,7 +54,7 @@ public class SearchRotatedSortArray2 {
                     left = mid+1;
                 }
             } else {
-                left = mid+1;
+                left = left+1;
             }
         }
         return nums[left] == target;
