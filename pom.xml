@@ -17,6 +17,7 @@
         <module>netty</module>
         <module>hadoop</module>
         <module>jdbc</module>
+        <module>rabbitmq</module>
     </modules>
     <packaging>pom</packaging>
 

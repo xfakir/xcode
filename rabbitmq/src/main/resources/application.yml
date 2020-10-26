@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    include: source
+  rabbitmq:
+    publisher-confirm-type: simple
+    publisher-returns: true
+    template:
+      mandatory: true
