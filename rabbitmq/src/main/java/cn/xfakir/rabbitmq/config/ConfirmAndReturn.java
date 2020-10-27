@@ -15,6 +15,7 @@ public class ConfirmAndReturn implements RabbitTemplate.ConfirmCallback,RabbitTe
 
     @PostConstruct
     public void init(){
+        rabbitTemplate.setMandatory(true);
         rabbitTemplate.setConfirmCallback(this);
         rabbitTemplate.setReturnCallback(this);
     }
@@ -29,9 +30,15 @@ public class ConfirmAndReturn implements RabbitTemplate.ConfirmCallback,RabbitTe
         }
     }
 
+    /**
+     * i->replyCode
+     * s->replyText
+     * s1->exchange
+     * s2->routingKey
+     */
     @Override
-    public void returnedMessage(Message message, int i, String s, String s1, String s2) {
+    public void returnedMessage(Message message, int i, String replyText, String exchange, String routingKey) {
         //此方法用于return监听(当交换机分发消息到队列失败时执行)
-        System.out.println(s+" "+s1+" "+s2);
+        System.out.println(replyText+" "+exchange+" "+routingKey);
     }
 }

@@ -18,9 +18,21 @@ public class RabbitmqController {
         return "success";
     }
 
+    @RequestMapping("/sendMsgWithErrorExchangeName")
+    public String sendMsgWithErrorExchangeName(@RequestParam String msg) {
+        rabbitTemplate.convertAndSend("aa","aa",msg);
+        return "success";
+    }
+
     @RequestMapping("/sendMsgWithErrorRoutingKey")
-    public String mandatory(@RequestParam String msg) {
+    public String sendMsgWithErrorRoutingKey(@RequestParam String msg) {
         rabbitTemplate.convertAndSend(RabbitmqConfig.EXCHANGE_NAME,"aa",msg);
+        return "success";
+    }
+
+    @RequestMapping("/sendMsgToTTLQueue")
+    public String sendMsgToTTLQueue(@RequestParam String msg) {
+        rabbitTemplate.convertAndSend("exchange_ttl",RabbitmqConfig.ROUTING_KEY,msg);
         return "success";
     }
 }

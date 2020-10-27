@@ -29,4 +29,46 @@ public class RabbitmqConfig {
                                      @Qualifier("itemTopicExchange") Exchange exchange){
         return BindingBuilder.bind(queue).to(exchange).with(ROUTING_KEY).noargs();
     }
+    //声明交换机
+    @Bean("itemTopicExchangeTTL")
+    public Exchange topicExchange2(){
+        return ExchangeBuilder.topicExchange("exchange_ttl").durable(true).build();
+    }
+
+    //声明队列
+    @Bean("itemQueueTTL")
+    public Queue itemQueue2(){
+        //expire设置队列过期时间
+        //
+        return QueueBuilder.durable("queue_ttl")
+                .deadLetterExchange("exchange_dlx").deadLetterRoutingKey(ROUTING_KEY)
+                .ttl(10000).build();
+    }
+
+    //绑定队列和交换机
+    @Bean("itemQueueExchangeTTL")
+    public Binding itemQueueExchange2(@Qualifier("itemQueueTTL") Queue queue,
+                                     @Qualifier("itemTopicExchangeTTL") Exchange exchange){
+        return BindingBuilder.bind(queue).to(exchange).with(ROUTING_KEY).noargs();
+    }
+
+    //声明交换机
+    @Bean("itemTopicExchangeDLX")
+    public Exchange topicExchange3(){
+        return ExchangeBuilder.topicExchange("exchange_dlx").durable(true).build();
+    }
+
+    //声明队列
+    @Bean("itemQueueDLX")
+    public Queue itemQueue3(){
+        return QueueBuilder.durable("queue_dlx").build();
+    }
+
+    //绑定队列和交换机
+    @Bean("itemQueueExchangeDLX")
+    public Binding itemQueueExchange3(@Qualifier("itemQueueDLX") Queue queue,
+                                      @Qualifier("itemTopicExchangeDLX") Exchange exchange){
+        return BindingBuilder.bind(queue).to(exchange).with(ROUTING_KEY).noargs();
+    }
+
 }

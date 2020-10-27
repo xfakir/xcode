@@ -12,5 +12,8 @@ public class RabbitConsumer {
         System.out.println("rabbitmq msg: " + msg);
     }
 
-
+    @RabbitListener(queues = "queue_dlx")
+    public void msgDLX(String msg) {
+        System.out.println("rabbitmq dlx msg: " + msg);
+    }
 }
