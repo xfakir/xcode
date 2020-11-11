@@ -54,7 +54,7 @@ public class ThreeSum {
 
     public static void main(String[] args) {
         ThreeSum t = new ThreeSum();
-        int[] a = {1,-1,-1,0};
+        int[] a = {0,0,-1,0};
         System.out.println(t.solution(a));
     }
 }
