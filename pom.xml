@@ -18,6 +18,7 @@
         <module>hadoop</module>
         <module>jdbc</module>
         <module>rabbitmq</module>
+        <module>design-pattern</module>
     </modules>
     <packaging>pom</packaging>
 
