@@ -21,5 +21,10 @@
         <module>design-pattern</module>
     </modules>
     <packaging>pom</packaging>
-
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+        </dependency>
+    </dependencies>
 </project>
