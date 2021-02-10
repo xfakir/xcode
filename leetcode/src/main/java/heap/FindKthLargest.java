@@ -25,7 +25,7 @@ public class FindKthLargest {
 
     public int partition(int[] nums,int left,int right) {
         if (right > left) {
-            int randomIndex = left + random.nextInt(right-left);
+            int randomIndex = left + random.nextInt(right-left) + 1;
             swap(nums,left,randomIndex);
             System.out.println(randomIndex);
         }
