@@ -1,6 +1,8 @@
 package greedy;
 
 import java.util.Arrays;
+import java.util.Deque;
+import java.util.LinkedList;
 
 /**
  * 给定一个以字符串表示的非负整数 num，移除这个数中的 k 位数字，使得剩下的数字最小。
@@ -27,14 +29,51 @@ import java.util.Arrays;
  *
  */
 public class RemoveKDigits {
-    public String solution(String num, int k) {
-        char[] chars = num.toCharArray();
-        int[] nums = new int[chars.length];
-        for (int i = 0; i < chars.length; i++) {
-            nums[i] = Integer.parseInt(String.valueOf(chars[i]));
+    public String removeKDigits(String num, int k) {
+        Deque<Character> deque = new LinkedList<>();
+        int length = num.length();
+        for (int i = 0; i < length; i++) {
+            char ch = num.charAt(i);
+            while (!deque.isEmpty() && k > 0 && deque.peekLast() > ch) {
+                deque.pollLast();
+                k--;
+            }
+            deque.offerLast(ch);
         }
-        Arrays.sort(chars);
-        return "";
+        for (int i = 0; i < k; i++) {
+            deque.pollLast();
+        }
+
+        StringBuilder sb = new StringBuilder();
+        boolean leadingZero = true;
+        while (!deque.isEmpty()) {
+            char character = deque.pollFirst();
+            if (leadingZero && character == '0') {
+                continue;
+            }
+            leadingZero = false;
+            sb.append(character);
+        }
+        return sb.length() == 0?"0":sb.toString();
+    }
+
+    public String solution(String num, int k) {
+        if (num.length() == k){
+            return "0";
+        }
+        StringBuilder sb = new StringBuilder(num);
+        while (k > 0){
+            int i = 0;
+            for (; i < sb.length()-1; i++){
+                if (sb.charAt(i) > sb.charAt(i+1)){
+                    break;
+                }
+            }
+            sb.delete(i,i+1);
+            while (sb.length() > 1 && sb.charAt(0) == '0') sb.delete(0, 1);
+            k--;
+        }
+        return sb.toString();
     }
 
 }
