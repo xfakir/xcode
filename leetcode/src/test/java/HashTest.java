@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class HashTest {
     public static void main(String[] args) {
         String key = "aisjdaois";
@@ -10,5 +12,8 @@ public class HashTest {
         int resize = length*2;
         System.out.println(hash % resize);
         System.out.println(hash & (resize - 1));
+
+        ArrayList<Integer> integers = new ArrayList<>();
+
     }
 }
